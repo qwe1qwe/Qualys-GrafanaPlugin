@@ -1,0 +1,21 @@
+apiVersion: 1
+
+# Credentials come from environment variables (see .env.example).
+# QUALYS_BASIC_AUTH = base64("<user>:<password>")
+datasources:
+  - name: Qualys
+    uid: qualys
+    type: qwe1qwe-qualys-datasource
+    access: proxy
+    orgId: 1
+    version: 1
+    editable: true
+    jsonData:
+      apiUrl: ${QUALYS_API_URL}
+      username: ${QUALYS_USERNAME}
+      pageSize: 500
+      cacheTtlMinutes: 15
+      concurrency: 2
+      enrichKb: true
+    secureJsonData:
+      basicAuth: ${QUALYS_BASIC_AUTH}

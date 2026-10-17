@@ -1,0 +1,11 @@
+apiVersion: 1
+
+# Loads the dashboards shipped with the plugin into the folder "Qualys".
+providers:
+  - name: qualys
+    folder: Qualys
+    type: file
+    disableDeletion: false
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/plugins/qwe1qwe-qualys-datasource/dashboards

@@ -1,0 +1,2547 @@
+{
+  "__inputs": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "qwe1qwe-qualys-datasource",
+      "name": "Qualys",
+      "version": "1.0.0"
+    }
+  ],
+  "uid": "qualys-tas-overview",
+  "title": "Qualys TotalAppSec - Overview",
+  "description": "Web-Application- und API-Findings aus Qualys TotalAppSec (WAS API)",
+  "tags": ["qualys", "tas", "totalappsec", "security"],
+  "editable": true,
+  "graphTooltip": 1,
+  "time": {
+    "from": "now-90d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "refresh": "",
+  "schemaVersion": 39,
+  "version": 1,
+  "links": [
+    {
+      "title": "Qualys",
+      "type": "dashboards",
+      "tags": ["qualys"],
+      "asDropdown": true,
+      "includeVars": false,
+      "keepTime": true,
+      "icon": "external link"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "ds",
+        "label": "Qualys",
+        "type": "datasource",
+        "query": "qwe1qwe-qualys-datasource",
+        "current": {},
+        "hide": 0,
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false
+      },
+      {
+        "name": "severity",
+        "label": "Severity",
+        "type": "custom",
+        "query": "5 - Urgent : 5,4 - Critical : 4,3 - Serious : 3,2 - Medium : 2,1 - Minimal : 1",
+        "multi": true,
+        "includeAll": false,
+        "options": [
+          {
+            "text": "5 - Urgent",
+            "value": "5",
+            "selected": true
+          },
+          {
+            "text": "4 - Critical",
+            "value": "4",
+            "selected": true
+          },
+          {
+            "text": "3 - Serious",
+            "value": "3",
+            "selected": true
+          },
+          {
+            "text": "2 - Medium",
+            "value": "2",
+            "selected": false
+          },
+          {
+            "text": "1 - Minimal",
+            "value": "1",
+            "selected": false
+          }
+        ],
+        "current": {
+          "text": ["5 - Urgent", "4 - Critical", "3 - Serious"],
+          "value": ["5", "4", "3"],
+          "selected": true
+        },
+        "hide": 0,
+        "skipUrlSync": false
+      },
+      {
+        "name": "status",
+        "label": "Status",
+        "type": "custom",
+        "query": "NEW,ACTIVE,REOPENED,PROTECTED,FIXED",
+        "multi": true,
+        "includeAll": false,
+        "options": [
+          {
+            "text": "NEW",
+            "value": "NEW",
+            "selected": true
+          },
+          {
+            "text": "ACTIVE",
+            "value": "ACTIVE",
+            "selected": true
+          },
+          {
+            "text": "REOPENED",
+            "value": "REOPENED",
+            "selected": true
+          },
+          {
+            "text": "PROTECTED",
+            "value": "PROTECTED",
+            "selected": false
+          },
+          {
+            "text": "FIXED",
+            "value": "FIXED",
+            "selected": false
+          }
+        ],
+        "current": {
+          "text": ["NEW", "ACTIVE", "REOPENED"],
+          "value": ["NEW", "ACTIVE", "REOPENED"],
+          "selected": true
+        },
+        "hide": 0,
+        "skipUrlSync": false
+      },
+      {
+        "name": "ftype",
+        "label": "Typ",
+        "type": "custom",
+        "query": "Vulnerability : VULNERABILITY,Sensitive Content : SENSITIVE_CONTENT,Information Gathered : INFORMATION_GATHERED",
+        "multi": true,
+        "includeAll": false,
+        "options": [
+          {
+            "text": "Vulnerability",
+            "value": "VULNERABILITY",
+            "selected": true
+          },
+          {
+            "text": "Sensitive Content",
+            "value": "SENSITIVE_CONTENT",
+            "selected": true
+          },
+          {
+            "text": "Information Gathered",
+            "value": "INFORMATION_GATHERED",
+            "selected": false
+          }
+        ],
+        "current": {
+          "text": ["Vulnerability", "Sensitive Content"],
+          "value": ["VULNERABILITY", "SENSITIVE_CONTENT"],
+          "selected": true
+        },
+        "hide": 0,
+        "skipUrlSync": false
+      },
+      {
+        "name": "webapp",
+        "label": "Web-App",
+        "type": "query",
+        "datasource": {
+          "type": "qwe1qwe-qualys-datasource",
+          "uid": "${ds}"
+        },
+        "query": "tas:webapp",
+        "definition": "tas:webapp",
+        "refresh": 1,
+        "includeAll": true,
+        "allValue": "ALL",
+        "multi": false,
+        "sort": 1,
+        "current": {
+          "text": ["All"],
+          "value": ["$__all"],
+          "selected": true
+        },
+        "options": [],
+        "hide": 0,
+        "regex": "",
+        "skipUrlSync": false
+      },
+      {
+        "name": "wtag",
+        "label": "Web-App-Tag",
+        "type": "query",
+        "datasource": {
+          "type": "qwe1qwe-qualys-datasource",
+          "uid": "${ds}"
+        },
+        "query": "tas:tags",
+        "definition": "tas:tags",
+        "refresh": 1,
+        "includeAll": true,
+        "allValue": "ALL",
+        "multi": false,
+        "sort": 1,
+        "current": {
+          "text": ["All"],
+          "value": ["$__all"],
+          "selected": true
+        },
+        "options": [],
+        "hide": 0,
+        "regex": "",
+        "skipUrlSync": false
+      },
+      {
+        "name": "filter",
+        "label": "Filter",
+        "description": "Client-seitiger Filter, z. B. group=XSS,SQL; cvss3>=7",
+        "type": "textbox",
+        "query": "",
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "hide": 0
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "row",
+      "title": "Übersicht",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "panels": []
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Offene Findings",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "count"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "red"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Betroffene Web-Apps",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "count",
+          "metric": "distinct",
+          "metricField": "webapp_id"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "orange"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Web-Apps gesamt",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 1,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_webapps",
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "format": "count"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "blue"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Findings nach Severity",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 1,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "count",
+          "splitBy": "severity"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "5 - Urgent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "dark-red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "4 - Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "3 - Serious"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "orange"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "2 - Medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "yellow"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1 - Minimal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value_and_name",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Ø Alter offener Findings",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 5,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "count",
+          "metric": "avg",
+          "metricField": "age_days"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "d",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "Seit > 90 Tagen offen",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 5,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter; age_days>90",
+          "format": "count"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "dark-red"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 8,
+      "type": "stat",
+      "title": "Sensitive Content",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 5,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter; type=SENSITIVE_CONTENT",
+          "format": "count"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "purple"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 9,
+      "type": "stat",
+      "title": "Neu im Zeitraum",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 5,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["NEW", "ACTIVE", "REOPENED", "PROTECTED", "FIXED"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "count",
+          "rangeField": "first_found"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "orange"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 10,
+      "type": "stat",
+      "title": "Behoben im Zeitraum",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 5,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["NEW", "ACTIVE", "REOPENED", "PROTECTED", "FIXED"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter; status=FIXED",
+          "format": "count",
+          "rangeField": "last_fixed"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "green"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 11,
+      "type": "stat",
+      "title": "MTTR (Ø Tage bis Fix)",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 20,
+        "y": 5,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["NEW", "ACTIVE", "REOPENED", "PROTECTED", "FIXED"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter; status=FIXED",
+          "format": "count",
+          "metric": "avg",
+          "metricField": "age_days",
+          "rangeField": "last_fixed"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "d",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "purple"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "orientation": "auto",
+        "wideLayout": true,
+        "showPercentChange": false
+      }
+    },
+    {
+      "id": 12,
+      "type": "row",
+      "title": "Trends",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "panels": []
+    },
+    {
+      "id": 13,
+      "type": "timeseries",
+      "title": "Neue vs. behobene Findings",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 10,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["NEW", "ACTIVE", "REOPENED", "PROTECTED", "FIXED"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "timeseries",
+          "timeField": "first_found"
+        },
+        {
+          "refId": "B",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["NEW", "ACTIVE", "REOPENED", "PROTECTED", "FIXED"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter; status=FIXED",
+          "format": "timeseries",
+          "timeField": "last_fixed"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 80,
+            "lineWidth": 1,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "barAlignment": 0
+          },
+          "min": 0,
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Neu"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "orange"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Behoben"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "green"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "type": "timeseries",
+      "title": "Offener Backlog nach Severity",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 10,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["NEW", "ACTIVE", "REOPENED", "PROTECTED", "FIXED"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "timeseries",
+          "timeField": "open_backlog",
+          "splitBy": "severity"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 40,
+            "lineWidth": 1,
+            "stacking": {
+              "mode": "normal",
+              "group": "A"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "barAlignment": 0
+          },
+          "min": 0,
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "5 - Urgent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "dark-red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "4 - Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "3 - Serious"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "orange"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "2 - Medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "yellow"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1 - Minimal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": "row",
+      "title": "Top-Listen",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "panels": []
+    },
+    {
+      "id": 16,
+      "type": "barchart",
+      "title": "Top 15 Web-Apps nach Findings",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "groupBy",
+          "groupBy": "webapp",
+          "splitBy": "severity",
+          "limit": 15
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 85,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisPlacement": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "5 - Urgent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "dark-red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "4 - Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "3 - Serious"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "orange"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "2 - Medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "yellow"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1 - Minimal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "webapp",
+        "stacking": "normal",
+        "showValue": "never",
+        "barWidth": 0.8,
+        "groupWidth": 0.7,
+        "xTickLabelMaxLength": 40,
+        "xTickLabelRotation": 0,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "type": "barchart",
+      "title": "OWASP Top 10",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 20,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter; owasp!=(none)",
+          "format": "groupBy",
+          "groupBy": "owasp",
+          "splitBy": "severity"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 85,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisPlacement": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "5 - Urgent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "dark-red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "4 - Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "3 - Serious"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "orange"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "2 - Medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "yellow"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1 - Minimal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "owasp",
+        "stacking": "normal",
+        "showValue": "never",
+        "barWidth": 0.8,
+        "groupWidth": 0.7,
+        "xTickLabelMaxLength": 40,
+        "xTickLabelRotation": 0,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "type": "row",
+      "title": "Verteilung",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "panels": []
+    },
+    {
+      "id": 19,
+      "type": "piechart",
+      "title": "Status",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 31,
+        "w": 6,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "groupBy",
+          "groupBy": "status"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": true
+        },
+        "pieType": "donut",
+        "displayLabels": ["percent"],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": ["value"]
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "type": "piechart",
+      "title": "Finding-Typ",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 31,
+        "w": 6,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "groupBy",
+          "groupBy": "type"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": true
+        },
+        "pieType": "donut",
+        "displayLabels": ["percent"],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": ["value"]
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "type": "bargauge",
+      "title": "Gruppe",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 31,
+        "w": 6,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "groupBy",
+          "groupBy": "group",
+          "limit": 10
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-YlRd"
+          },
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": true
+        },
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "valueMode": "color",
+        "showUnfilled": true,
+        "namePlacement": "left",
+        "sizing": "auto",
+        "minVizHeight": 10,
+        "maxVizHeight": 24
+      }
+    },
+    {
+      "id": 22,
+      "type": "bargauge",
+      "title": "Alter (SLA-Buckets)",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 31,
+        "w": 6,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "groupBy",
+          "groupBy": "age_bucket"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-YlRd"
+          },
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": true
+        },
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "valueMode": "color",
+        "showUnfilled": true,
+        "namePlacement": "left",
+        "sizing": "auto",
+        "minVizHeight": 10,
+        "maxVizHeight": 24
+      }
+    },
+    {
+      "id": 23,
+      "type": "bargauge",
+      "title": "Top 10 CWE",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 39,
+        "w": 8,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter; cwe!=(none)",
+          "format": "groupBy",
+          "groupBy": "cwe",
+          "limit": 10
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "red"
+          },
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": true
+        },
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "valueMode": "color",
+        "showUnfilled": true,
+        "namePlacement": "left",
+        "sizing": "auto",
+        "minVizHeight": 10,
+        "maxVizHeight": 24
+      }
+    },
+    {
+      "id": 24,
+      "type": "table",
+      "title": "Top 15 Schwachstellen",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 39,
+        "w": 10,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "groupBy",
+          "groupBy": "name",
+          "splitBy": "severity",
+          "limit": 15
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "filterable": true,
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "severity"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "1": {
+                        "text": "1 - Minimal",
+                        "color": "blue",
+                        "index": 4
+                      },
+                      "2": {
+                        "text": "2 - Medium",
+                        "color": "yellow",
+                        "index": 3
+                      },
+                      "3": {
+                        "text": "3 - Serious",
+                        "color": "orange",
+                        "index": 2
+                      },
+                      "4": {
+                        "text": "4 - Critical",
+                        "color": "red",
+                        "index": 1
+                      },
+                      "5": {
+                        "text": "5 - Urgent",
+                        "color": "dark-red",
+                        "index": 0
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 110
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "age_days"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 30
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "5 - Urgent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "dark-red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "4 - Critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "3 - Serious"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "orange"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "2 - Medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "yellow"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1 - Minimal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "blue"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": ["count"],
+          "countRows": true,
+          "fields": ""
+        },
+        "sortBy": []
+      }
+    },
+    {
+      "id": 25,
+      "type": "piechart",
+      "title": "Quelle",
+      "description": "Scanner, der das Finding geliefert hat (QUALYS, BURP, BUGCROWD, ...)",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 39,
+        "w": 6,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "groupBy",
+          "groupBy": "finding_type"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"],
+          "fields": "",
+          "values": true
+        },
+        "pieType": "donut",
+        "displayLabels": ["percent"],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": ["value"]
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 26,
+      "type": "row",
+      "title": "Details",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "panels": []
+    },
+    {
+      "id": 27,
+      "type": "table",
+      "title": "Offene Findings (max. 1000, nach Severity)",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 49,
+        "w": 24,
+        "h": 14
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_findings",
+          "tasSeverities": ["$severity"],
+          "tasStatuses": ["$status"],
+          "tasTypes": ["$ftype"],
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "filter": "$filter",
+          "format": "table",
+          "limit": 1000
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "filterable": true,
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "severity"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "1": {
+                        "text": "1 - Minimal",
+                        "color": "blue",
+                        "index": 4
+                      },
+                      "2": {
+                        "text": "2 - Medium",
+                        "color": "yellow",
+                        "index": 3
+                      },
+                      "3": {
+                        "text": "3 - Serious",
+                        "color": "orange",
+                        "index": 2
+                      },
+                      "4": {
+                        "text": "4 - Critical",
+                        "color": "red",
+                        "index": 1
+                      },
+                      "5": {
+                        "text": "5 - Urgent",
+                        "color": "dark-red",
+                        "index": 0
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 110
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "age_days"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 30
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "url"
+            },
+            "properties": [
+              {
+                "id": "custom.minWidth",
+                "value": 260
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": true,
+          "reducer": ["count"],
+          "countRows": true,
+          "fields": ""
+        },
+        "sortBy": []
+      }
+    },
+    {
+      "id": 28,
+      "type": "table",
+      "title": "Web-Applikationen",
+      "datasource": {
+        "type": "qwe1qwe-qualys-datasource",
+        "uid": "${ds}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 63,
+        "w": 24,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "qwe1qwe-qualys-datasource",
+            "uid": "${ds}"
+          },
+          "queryType": "tas_webapps",
+          "webAppName": "$webapp",
+          "webAppTag": "$wtag",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "filterable": true,
+            "cellOptions": {
+              "type": "auto"
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "severity"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "1": {
+                        "text": "1 - Minimal",
+                        "color": "blue",
+                        "index": 4
+                      },
+                      "2": {
+                        "text": "2 - Medium",
+                        "color": "yellow",
+                        "index": 3
+                      },
+                      "3": {
+                        "text": "3 - Serious",
+                        "color": "orange",
+                        "index": 2
+                      },
+                      "4": {
+                        "text": "4 - Critical",
+                        "color": "red",
+                        "index": 1
+                      },
+                      "5": {
+                        "text": "5 - Urgent",
+                        "color": "dark-red",
+                        "index": 0
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 110
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "age_days"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 30
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": true,
+          "reducer": ["count"],
+          "countRows": true,
+          "fields": ""
+        },
+        "sortBy": []
+      }
+    }
+  ]
+}

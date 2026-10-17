@@ -1,0 +1,11 @@
+services:
+  grafana:
+    extends:
+      file: .config/docker-compose-base.yaml
+      service: grafana
+    environment:
+      QUALYS_API_URL: ${QUALYS_API_URL:-https://qualysapi.qg2.apps.qualys.eu}
+      QUALYS_USERNAME: ${QUALYS_USERNAME:-}
+      QUALYS_BASIC_AUTH: ${QUALYS_BASIC_AUTH:-}
+      # Qualys can take a while for large detection pages
+      GF_DATAPROXY_TIMEOUT: 300

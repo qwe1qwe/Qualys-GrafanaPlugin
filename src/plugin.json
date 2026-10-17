@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "datasource",
+  "name": "Qualys",
+  "id": "qwe1qwe-qualys-datasource",
+  "metrics": true,
+  "info": {
+    "description": "Qualys VMDR detections/hosts and TotalAppSec (WAS) findings via the Qualys API",
+    "author": {
+      "name": "qwe1qwe"
+    },
+    "keywords": ["qualys", "vmdr", "totalappsec", "tas", "was", "vulnerability", "security"],
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [],
+    "screenshots": [],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+  "routes": [
+    {
+      "path": "qualys",
+      "url": "{{ .JsonData.apiUrl }}",
+      "headers": [
+        { "name": "Authorization", "content": "Basic {{ .SecureJsonData.basicAuth }}" },
+        { "name": "X-Requested-With", "content": "Grafana Qualys Datasource" }
+      ]
+    }
+  ],
+  "includes": [
+    { "type": "dashboard", "name": "Qualys VMDR - Overview", "path": "dashboards/vmdr-overview.json" },
+    { "type": "dashboard", "name": "Qualys TotalAppSec - Overview", "path": "dashboards/tas-overview.json" }
+  ],
+  "dependencies": {
+    "grafanaDependency": ">=11.0.0",
+    "plugins": []
+  }
+}
